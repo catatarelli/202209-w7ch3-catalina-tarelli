@@ -2,4 +2,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const { PORT: port, MONGODB_URL: mongoUrl, DEBUG: debub } = process.env;
+export const {
+  PORT: port,
+  MONGODB_URL: mongoUrl,
+  DEBUG: debub,
+  JWT_SECRET: secretWord,
+} = process.env;
