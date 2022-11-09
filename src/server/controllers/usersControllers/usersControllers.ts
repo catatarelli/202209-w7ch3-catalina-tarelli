@@ -1,12 +1,12 @@
 import bcrypt from "bcryptjs";
-import CustomError from "../../../CustomError/CustomError";
+import CustomError from "../../../CustomError/CustomError.js";
 import type {
   RegisterData,
   UserCredentials,
   UserTokenPayload,
 } from "../../../types/types";
-import User from "../../../database/models/User";
-import { secretWord } from "../../../loadEnvironments";
+import User from "../../../database/models/User.js";
+import { secretWord } from "../../../loadEnvironments.js";
 import jwt from "jsonwebtoken";
 import type { NextFunction, Response, Request } from "express";
 
