@@ -1,5 +1,8 @@
 import type { JwtPayload } from "jsonwebtoken";
 
+export interface Username {
+  username: string;
+}
 export interface User {
   username: string;
   password: string;
