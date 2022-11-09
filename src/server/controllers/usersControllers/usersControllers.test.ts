@@ -2,10 +2,14 @@ import "../../../loadEnvironments.js";
 import CustomError from "../../../CustomError/CustomError.js";
 import User from "../../../database/models/User.js";
 import { secretWord } from "../../../loadEnvironments.js";
-import { userMock, userMockWithId } from "../../../mocks/userMock.js";
+import {
+  userMock,
+  userMockCredentials,
+  userMockWithId,
+} from "../../../mocks/userMock.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { loginUser } from "./usersControllers.js";
+import { loginUser, registerUser } from "./usersControllers.js";
 import type { NextFunction, Request, Response } from "express";
 
 beforeEach(() => {
@@ -74,6 +78,40 @@ describe("Given a loginUser Controller", () => {
       );
 
       expect(next).toHaveBeenCalledWith(noDataCustomError);
+    });
+  });
+});
+
+describe("Given a registerUser Controller", () => {
+  const req: Partial<Request> = {
+    body: userMockCredentials,
+  };
+
+  describe("When it receives a request with username 'paquito', password: 'paquito123', email: 'paquito@gmail.com'", () => {
+    test("Then it should call the response method status with a 201, and the json method with the user", async () => {
+      const expectedStatus = 201;
+
+      const hashedPassword = await bcrypt.hash(
+        userMockCredentials.password,
+        10
+      );
+
+      User.create = jest
+        .fn()
+        .mockReturnValue({ ...userMockCredentials, password: hashedPassword });
+      await registerUser(req as Request, res as Response, null);
+
+      expect(res.status).toHaveBeenCalledWith(expectedStatus);
+      expect(res.json).toHaveBeenCalled();
+    });
+  });
+
+  describe("When it receives a request and there is an error", () => {
+    test("Then it should call next with a custom Error", async () => {
+      User.create = jest.fn().mockRejectedValue(new Error(""));
+      await registerUser(req as Request, res as Response, next as NextFunction);
+
+      expect(next).toHaveBeenCalled();
     });
   });
 });
