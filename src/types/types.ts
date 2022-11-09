@@ -11,6 +11,7 @@ export interface UserCredentials extends User {
 
 export interface RegisterData extends User {
   email: string;
+  _id: string;
 }
 export interface UserTokenPayload extends JwtPayload {
   id: string;

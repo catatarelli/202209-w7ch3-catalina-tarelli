@@ -1,7 +1,7 @@
 import express from "express";
 import morgan from "morgan";
-import { generalError, notFoundPage } from "./errors/errors";
-import usersRouter from "./routers/usersRouters";
+import { generalError, notFoundPage } from "./errors/errors.js";
+import usersRouter from "./routers/usersRouters.js";
 
 const app = express();
 

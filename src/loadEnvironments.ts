@@ -5,6 +5,6 @@ dotenv.config();
 export const {
   PORT: port,
   MONGODB_URL: mongoUrl,
-  DEBUG: debub,
+  DEBUG: debugEnv,
   JWT_SECRET: secretWord,
 } = process.env;
