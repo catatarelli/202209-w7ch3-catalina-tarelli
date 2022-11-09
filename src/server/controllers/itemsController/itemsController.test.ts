@@ -1,7 +1,7 @@
 import Item from "../../../database/models/Item";
 import { getRandomUsers } from "../../../mocks/factory";
 import { getItems } from "./itemsController";
-import type { Response, NextFunction, Request } from "express";
+import type { Response, NextFunction } from "express";
 import CustomError from "../../../CustomError/CustomError";
 
 beforeEach(() => {
