@@ -9,6 +9,9 @@ export interface UserCredentials extends User {
   _id: string;
 }
 
+export interface RegisterData extends User {
+  email: string;
+}
 export interface UserTokenPayload extends JwtPayload {
   id: string;
   username: string;

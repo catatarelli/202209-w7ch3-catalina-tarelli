@@ -1,6 +1,10 @@
 import bcrypt from "bcryptjs";
 import CustomError from "../../../CustomError/CustomError";
-import type { UserCredentials, UserTokenPayload } from "../../../types/types";
+import type {
+  RegisterData,
+  UserCredentials,
+  UserTokenPayload,
+} from "../../../types/types";
 import User from "../../../database/models/User";
 import { secretWord } from "../../../loadEnvironments";
 import jwt from "jsonwebtoken";
@@ -41,4 +45,30 @@ export const loginUser = async (
   });
 
   res.status(200).json({ token });
+};
+
+export const registerUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { username, password, email } = req.body as RegisterData;
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = await User.create({
+      username,
+      password: hashedPassword,
+      email,
+    });
+
+    res.status(201).json({ user: { id: newUser._id, username, email } });
+  } catch (error: unknown) {
+    const customError = new CustomError(
+      (error as Error).message,
+      500,
+      "General error"
+    );
+    next(customError);
+  }
 };
