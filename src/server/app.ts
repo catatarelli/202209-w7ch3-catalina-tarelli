@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
-import { generalError, unknownEndpoint } from "./errors/errors.js";
+import { auth } from "./middlewares/auth/auth.js";
+import { generalError, unknownEndpoint } from "./middlewares/errors/errors.js";
 import itemsRouter from "./routers/itemsRouters.js";
 import usersRouter from "./routers/usersRouters.js";
 
@@ -11,7 +12,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use("/users", usersRouter);
-app.use("/items", itemsRouter);
+app.use("/items", auth, itemsRouter);
 
 app.use(unknownEndpoint);
 app.use(generalError);
