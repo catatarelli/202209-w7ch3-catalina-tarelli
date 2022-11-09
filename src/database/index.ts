@@ -6,7 +6,7 @@ const debug = debugCreator("Robots:database:root");
 
 const connectDatabase = async (mongoUrl: string) => {
   try {
-    await mongoose.connect(mongoUrl, { dbName: "w7ch2" });
+    await mongoose.connect(mongoUrl, { dbName: "w7ch3" });
     debug(chalk.blue("Connected to database"));
   } catch (error: unknown) {
     debug(chalk.red(`Error on connection`, (error as Error).message));
