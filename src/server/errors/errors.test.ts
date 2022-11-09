@@ -1,6 +1,6 @@
 import type { Response } from "express";
 import CustomError from "../../CustomError/CustomError";
-import { generalError, notFoundPage } from "./errors";
+import { generalError, unknownEndpoint } from "./errors";
 
 const res: Partial<Response> = {
   status: jest.fn().mockReturnThis(),
@@ -63,7 +63,7 @@ describe("Given an errors middleware", () => {
       test("Then it should return the method status 404", () => {
         const expectedStatus = 404;
 
-        notFoundPage(null, res as Response);
+        unknownEndpoint(null, res as Response);
 
         expect(res.status).toHaveBeenCalledWith(expectedStatus);
       });
@@ -73,7 +73,7 @@ describe("Given an errors middleware", () => {
 
         res.json = jest.fn().mockReturnValue(expectedMessage);
 
-        notFoundPage(null, res as Response);
+        unknownEndpoint(null, res as Response);
 
         expect(res.json).toHaveBeenCalledWith(expectedMessage);
       });

@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import type CustomError from "../../CustomError/CustomError";
 
-export const notFoundPage = (req: Request, res: Response) => {
-  res.status(404).json({ message: "Page not found" });
+export const unknownEndpoint = (req: Request, res: Response) => {
+  res.status(404).json({ message: "unknown endpoint" });
 };
 
 export const generalError = (
