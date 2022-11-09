@@ -1,5 +1,9 @@
 import type { RegisterData, User, UserCredentials } from "../types/types";
 
+export const itemsMock = {
+  name: "banana",
+};
+
 export const userMock: User = {
   username: "paquito",
   password: "paquito123",
