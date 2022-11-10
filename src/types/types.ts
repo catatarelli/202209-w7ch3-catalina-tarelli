@@ -4,19 +4,23 @@ import type { Request } from "express";
 export interface Username {
   username: string;
 }
-export interface User {
+export interface UserCredentials {
   username: string;
   password: string;
 }
 
-export interface UserCredentials extends User {
-  _id: string;
+export interface RegisterData extends UserCredentials {
+  email: string;
 }
 
-export interface RegisterData extends User {
-  email: string;
-  _id: string;
+export interface ItemId {
+  id: string;
 }
+
+export interface ItemName {
+  name: string;
+}
+
 export interface UserTokenPayload extends JwtPayload {
   id: string;
   username: string;
