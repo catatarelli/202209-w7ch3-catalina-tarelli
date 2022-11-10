@@ -18,16 +18,9 @@ export const loginUser = async (
   const { username, password } = req.body as UserCredentials;
   const user = await User.findOne({ username });
 
-  if (!user) {
-    const error = new CustomError("No data found", 404, "No data found");
-
-    next(error);
-    return;
-  }
-
-  if (!(await bcrypt.compare(password, user.password))) {
+  if (!user || !(await bcrypt.compare(password, user.password))) {
     const error = new CustomError(
-      "Password is incorrect",
+      "Wrong credentials",
       401,
       "Wrong credentials"
     );
