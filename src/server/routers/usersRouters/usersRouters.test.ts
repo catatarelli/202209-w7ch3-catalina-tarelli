@@ -1,11 +1,11 @@
-import "../../loadEnvironments.js";
+import "../../../loadEnvironments.js";
 import request from "supertest";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import app from "../app.js";
-import connectDatabase from "../../database/index.js";
-import User from "../../database/models/User.js";
+import app from "../../app.js";
+import connectDatabase from "../../../database/index.js";
+import User from "../../../database/models/User.js";
 
 let server: MongoMemoryServer;
 

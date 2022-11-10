@@ -21,3 +21,18 @@ export const userMockCredentials = {
   email: "paquito@gmail.com",
   id: "ñasokdfjdsñlk",
 };
+
+export const itemsListMock = [
+  {
+    name: "Teddy Bear",
+    picture: "TeddyBear.jpg",
+    owner: "abc123",
+    id: "636d2f5fbb30713a7c2122f1",
+  },
+  {
+    name: "Bubble gum",
+    picture: "Bubble gum.jpg",
+    owner: "abc123",
+    id: "636d2f5fbb30713a7c32111f1",
+  },
+];
