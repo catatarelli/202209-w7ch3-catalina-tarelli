@@ -1,23 +1,23 @@
-import type { RegisterData, User, UserCredentials } from "../types/types";
+import type { UserCredentials } from "../types/types";
 
 export const itemsMock = {
   name: "banana",
 };
 
-export const userMock: User = {
+export const userMock: UserCredentials = {
   username: "paquito",
   password: "paquito123",
 };
 
-export const userMockWithId: UserCredentials = {
+export const userMockWithId = {
   username: "paquito",
   password: "paquito123",
   _id: "ñlaksdjfl",
 };
 
-export const userMockCredentials: RegisterData = {
+export const userMockCredentials = {
   username: "paquito",
   password: "paquito123",
   email: "paquito@gmail.com",
-  _id: "ñasokdfjdsñlk",
+  id: "ñasokdfjdsñlk",
 };

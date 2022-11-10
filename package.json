@@ -8,7 +8,7 @@
     "build": "tsc",
     "build:dev": "tsc -w",
     "start": "node .",
-    "start:dev": "node --watch .",
+    "start:dev": "nodemon . -q",
     "test": "jest",
     "test:dev": "jest --watchAll",
     "test:coverage": "jest --coverage --watchAll=false",
@@ -40,6 +40,8 @@
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "@types/bcryptjs": "^2.4.2",
+    "@types/multer": "^1.4.7",
+    "@types/supertest": "^2.0.12",
     "bcryptjs": "^2.4.3",
     "chalk": "^5.1.2",
     "cors": "^2.8.5",
@@ -48,7 +50,11 @@
     "express": "^4.18.2",
     "fishery": "^2.2.2",
     "jsonwebtoken": "^8.5.1",
+    "mongodb-memory-server": "^8.10.0",
     "mongoose": "^6.7.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.1"
   }
 }
