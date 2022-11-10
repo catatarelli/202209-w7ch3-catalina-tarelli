@@ -2,8 +2,8 @@ import express from "express";
 import morgan from "morgan";
 import { auth } from "./middlewares/auth/auth.js";
 import { generalError, unknownEndpoint } from "./middlewares/errors/errors.js";
-import itemsRouter from "./routers/itemsRouters.js";
-import usersRouter from "./routers/usersRouters.js";
+import itemsRouter from "./routers/itemsRouters/itemsRouters.js";
+import usersRouter from "./routers/usersRouters/usersRouters.js";
 
 const app = express();
 
