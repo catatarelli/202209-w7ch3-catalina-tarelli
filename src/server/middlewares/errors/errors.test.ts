@@ -29,7 +29,7 @@ describe("Given an errors middleware", () => {
 
         generalError(error, null, res as Response, null);
 
-        expect(res.json).toHaveBeenCalledWith(expectedMessage);
+        expect(res.json).toHaveBeenCalledWith({ error: expectedMessage });
       });
     });
 
@@ -49,11 +49,11 @@ describe("Given an errors middleware", () => {
       test("Then it should return the method json with the public message 'Ops, something went wrong, try again later'", () => {
         const error = new Error("");
 
-        const expectedMessage = "Ops, something went wrong, try again later";
+        const expectedMessage = "Oops, something went wrong, try again later";
 
         generalError(error as CustomError, null, res as Response, null);
 
-        expect(res.json).toHaveBeenCalledWith(expectedMessage);
+        expect(res.json).toHaveBeenCalledWith({ error: expectedMessage });
       });
     });
   });

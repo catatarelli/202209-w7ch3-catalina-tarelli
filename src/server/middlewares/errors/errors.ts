@@ -14,6 +14,6 @@ export const generalError = (
 ) => {
   const statusCode = error.statusCode ?? 500;
   const message =
-    error.publicMessage || "Ops, something went wrong, try again later";
-  res.status(statusCode).json(message);
+    error.publicMessage || "Oops, something went wrong, try again later";
+  res.status(statusCode).json({ error: message });
 };
