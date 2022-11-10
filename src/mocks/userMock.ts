@@ -12,7 +12,7 @@ export const userMock: UserCredentials = {
 export const userMockWithId = {
   username: "paquito",
   password: "paquito123",
-  id: "ñlaksdjfl",
+  _id: "ñlaksdjfl",
 };
 
 export const userMockCredentials = {
