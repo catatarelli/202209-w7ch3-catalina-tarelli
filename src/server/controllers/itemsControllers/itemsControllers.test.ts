@@ -16,7 +16,7 @@ const res: Partial<Response> = {
 const next = jest.fn();
 
 describe("Given a getItems Controller", () => {
-  describe("When it receives a request with an id 'abc123' of a user in the database", () => {
+  describe("When it receives a request from a user in the database with id 'abc123'", () => {
     const req: Partial<CustomRequest> = {
       userId: "abc123",
     };
