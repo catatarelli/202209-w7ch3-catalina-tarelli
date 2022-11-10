@@ -3,7 +3,6 @@ import type { Response, NextFunction } from "express";
 import { getItems } from "./itemsControllers";
 import Item from "../../../database/models/Item";
 import { itemsListMock } from "../../../mocks/userMock";
-import CustomError from "../../../CustomError/CustomError";
 
 beforeEach(() => {
   jest.clearAllMocks();
