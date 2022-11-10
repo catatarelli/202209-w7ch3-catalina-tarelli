@@ -5,7 +5,7 @@ import {
   createItem,
   deleteItemById,
   getItems,
-} from "../controllers/itemsController/itemsController.js";
+} from "../controllers/itemsController/itemsControllers.js";
 
 const upload = multer({
   dest: path.join("assets", "images"),
