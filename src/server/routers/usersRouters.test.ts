@@ -31,7 +31,7 @@ const registerData = {
 
 describe("Given a POST /users/register endpoint", () => {
   describe("When it receives a request with username 'panchito' password 'panchito123' and email 'panchito@gmail.com'", () => {
-    test("Then it should call the response method status with a 201, and the new user 'panchito'", async () => {
+    test("Then it should respond with a response status 201, and the new user 'panchito'", async () => {
       const expectedStatus = 201;
 
       const response = await request(app)
@@ -44,7 +44,7 @@ describe("Given a POST /users/register endpoint", () => {
   });
 
   describe("When it receives a request username 'panchito' and this username exists in the database ", () => {
-    test("Then it should call the response method status with a 500, and the message 'General Error'", async () => {
+    test("Then it should respond with a response status 500, and the message 'General Error'", async () => {
       const expectedStatus = 500;
 
       await User.create(registerData);
@@ -66,7 +66,7 @@ describe("Given a POST /users/login endpoint", () => {
   };
 
   describe("When it receives a request with username 'panchito' password 'panchito123' and it exists in the database", () => {
-    test("Then it should call the response method status with a 200 and the token", async () => {
+    test("Then it should respond with a response status 200 and the token", async () => {
       const expectedStatus = 200;
 
       const hashedPassword = await bcrypt.hash(registerData.password, 10);
@@ -87,20 +87,20 @@ describe("Given a POST /users/login endpoint", () => {
   });
 
   describe("When it receives a request with username 'panchito' password 'panchito123' and it doesn't exists in the database", () => {
-    test("Then it should call the response method status with a 404 and the message 'No data found'", async () => {
-      const expectedStatus = 404;
+    test("Then it should respond with a response status 401 and the message 'Wrong credentials'", async () => {
+      const expectedStatus = 401;
 
       const response = await request(app)
         .post("/users/login/")
         .send(loginData)
         .expect(expectedStatus);
 
-      expect(response.body).toHaveProperty("error", "No data found");
+      expect(response.body).toHaveProperty("error", "Wrong credentials");
     });
   });
 
   describe("When it receives a request with username 'panchito' password 'panchito456' and the password is incorrect", () => {
-    test("Then it should call the response method status with a 401 and the message 'Wrong credentials'", async () => {
+    test("Then it should respond with a response status 401 and the message 'Wrong credentials'", async () => {
       const expectedStatus = 401;
 
       const hashedPassword = await bcrypt.hash(registerData.password, 10);

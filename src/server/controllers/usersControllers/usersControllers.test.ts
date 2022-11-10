@@ -28,8 +28,14 @@ describe("Given a loginUser Controller", () => {
     body: userMock,
   };
 
+  const newCustomError = new CustomError(
+    "Wrong credentials",
+    401,
+    "Wrong credentials"
+  );
+
   describe("When it receives a request with a username 'paquito' and password 'paquito' that are in the database", () => {
-    test("Then it should call the response method status with a 200, and the json method with the token", async () => {
+    test("Then it should respond with response status 200, and the json method with the token", async () => {
       const expectedStatus = 200;
 
       const token = jwt.sign(userMockWithId, secretWord);
@@ -46,23 +52,17 @@ describe("Given a loginUser Controller", () => {
   });
 
   describe("When it receives username 'pepito' that is not in the database", () => {
-    test("Then it should call next with a Custom Error with public message 'Wrong credentials'", async () => {
+    test("Then it should call next with a Custom Error with public message 'Wrong credentials' and response status 401", async () => {
       User.findOne = jest.fn().mockReturnValue({});
 
       await loginUser(req as Request, res as Response, next as NextFunction);
-
-      const newCustomError = new CustomError(
-        "Password is incorrect",
-        401,
-        "Wrong credentials"
-      );
 
       expect(next).toHaveBeenCalledWith(newCustomError);
     });
   });
 
   describe("When it receives a request with an empty body", () => {
-    test("Then it should call next with a Custom Error with public message 'No data found'", async () => {
+    test("Then it should call next with a Custom Error with public message 'Wrong credentials' and response status 401", async () => {
       User.findOne = jest.fn().mockReturnValue(null);
 
       const req: Partial<Request> = {
@@ -71,13 +71,7 @@ describe("Given a loginUser Controller", () => {
 
       await loginUser(req as Request, res as Response, next as NextFunction);
 
-      const noDataCustomError = new CustomError(
-        "No data found",
-        404,
-        "No data found"
-      );
-
-      expect(next).toHaveBeenCalledWith(noDataCustomError);
+      expect(next).toHaveBeenCalledWith(newCustomError);
     });
   });
 });
